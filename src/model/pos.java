@@ -47,5 +47,23 @@ public class pos implements Serialiazable {
     // TODO: Implement this method
   }
 
+  // Returns the list of invoices
+  public List<invoice> getInvoices() {
+
+    return this.invoices;
+  }
+
+  // Returns the current active users
+  public user getCurrentUser() {
+
+    return this.activeUser;
+  }
+
+  // Returns the current inventory
+  public inventory getInventory() {
+
+    return this.inventory;
+  }
+
 
 }
