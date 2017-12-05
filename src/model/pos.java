@@ -75,6 +75,40 @@ public class pos implements Serialiazable {
     return result;
   }
 
+  // Adds an item to an invoice
+  public boolean addPaperclipToInvoice(invoice i, paperclip-color c, paperclip-size s, int qty) {
+
+    // Vars
+    paperclip toBuy = null;
+
+    // Are we in stock?
+    if ((toBuy = this.inventory.buy(c, s, qty)) != null) {
+
+      // Add to our cart
+      i.addToCart(toBuy);
+      return true;
+    }
+
+    return false;
+  }
+
+  // Removes an item from the cart
+  public boolean removePaperclipFromInvoice(invoice i, paperclip-color c, paperclip-size s, int qty) {
+
+    // Vars
+    paperclip toReturn = new paperclip(c, s, qty);
+
+    // Did we successfully remove it from the cart?
+    if (i.removeFromCart(toReturn)) {
+
+      // Restock our inventory
+      this.stock.addStock(c, s, qty);
+      return true;
+    }
+
+    return false;
+  }
+
   // Returns the list of invoices
   public List<invoice> getInvoices() {
 

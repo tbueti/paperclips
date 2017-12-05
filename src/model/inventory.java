@@ -143,7 +143,7 @@ public class inventory {
   // Returns a paperclip of the required quantity value if the stock
   // contains enough paperclips to satisfy the order. Returns null
   // if the stock does not have enough to satisfy the order.
-  public boolean buy(paperclip-color c, paperclip-size s, int qty) {
+  public paperclip buy(paperclip-color c, paperclip-size s, int qty) {
 
     // Vars
     paperclip order = null;

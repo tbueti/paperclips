@@ -5,10 +5,9 @@
 import java.util.Date;
 
 // Invoice Class
-public class invoice implements Comparable<invoice> {
+public class invoice implements Comparable <invoice> {
 
   // Class members
-  private final int price =
   private String companyName;     // Name of the company
   private String address;         // Where the customer is
   private String ccNum;           // Stored credit card number (totally secure bro)
@@ -59,7 +58,7 @@ public class invoice implements Comparable<invoice> {
   }
 
   // Removes a paper clip from the order and updates the total
-  public void removeFromCart(paperclip p) {
+  public boolean removeFromCart(paperclip p) {
 
     // Subtract the paperclips to the cart
     // See if we have paperclips that are already like this in the cart
@@ -79,10 +78,12 @@ public class invoice implements Comparable<invoice> {
 
           this.order.remove(i);
         }
-        
-        return;
+
+        return true;
       }
     }
+
+    return false;
   }
 
   // Returns the customer order
@@ -126,5 +127,14 @@ public class invoice implements Comparable<invoice> {
 
     return this.ccNum;
   }
+
+  // Returns a string formatted date of when the invoice was created
+  public String getDate() {
+
+    // Vars
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    return dateFormat.format(this.purchaseDate);
+  }
+
 
 }
