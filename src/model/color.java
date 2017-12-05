@@ -3,7 +3,7 @@
 // NetID: tbueti
 
 // Paperclip color
-public enum paperclip-color {
+public enum color {
 
   RED,
   GREEN,

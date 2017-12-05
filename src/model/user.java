@@ -16,7 +16,7 @@ public class user {
     // Initialize
     this.username = name;
     this.password = password;
-    this.userType = t;
+    this.auth = t;
   }
 
   // Returns the name of the user

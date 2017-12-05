@@ -1,9 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 // File: pos.java
 // Author: Thomas E. Bueti
 // NetID: tbueti
 
 // Point of Sale Class
-public class pos implements Serialiazable {
+public class pos {
 
   // Class members
   private List<user> users;         // Contains a list of all authorized users
@@ -16,8 +19,8 @@ public class pos implements Serialiazable {
 
     // Initialize
     users = new ArrayList<user>();
-    invoices = new ArrayList<user>();
-    stock = new stock();
+    invoices = new ArrayList<invoice>();
+    this.stock = new inventory();
     activeUser = null;
 
     // Add some users
@@ -67,7 +70,7 @@ public class pos implements Serialiazable {
     // Did we find the user? Let's authenticate
     if (desiredUser != null && desiredUser.getPassword().equals(password)) {
 
-      this.currentUser = desiredUser;
+      this.activeUser = desiredUser;
       result = true;
     }
 
@@ -76,13 +79,13 @@ public class pos implements Serialiazable {
   }
 
   // Adds an item to an invoice
-  public boolean addPaperclipToInvoice(invoice i, paperclip-color c, paperclip-size s, int qty) {
+  public boolean addPaperclipToInvoice(invoice i, color c, size s, int qty) {
 
     // Vars
     paperclip toBuy = null;
 
     // Are we in stock?
-    if ((toBuy = this.inventory.buy(c, s, qty)) != null) {
+    if ((toBuy = this.stock.buy(c, s, qty)) != null) {
 
       // Add to our cart
       i.addToCart(toBuy);
@@ -93,7 +96,7 @@ public class pos implements Serialiazable {
   }
 
   // Removes an item from the cart
-  public boolean removePaperclipFromInvoice(invoice i, paperclip-color c, paperclip-size s, int qty) {
+  public boolean removePaperclipFromInvoice(invoice i, color c, size s, int qty) {
 
     // Vars
     paperclip toReturn = new paperclip(c, s, qty);
@@ -124,13 +127,13 @@ public class pos implements Serialiazable {
   // Returns the current inventory
   public inventory getInventory() {
 
-    return this.inventory;
+    return this.stock;
   }
 
   // Logs the user out
   public void logout() {
 
-    this.currentUser = null;
+    this.activeUser = null;
   }
 
 

@@ -6,16 +6,16 @@
 public class paperclip {
 
   // Class members
-  private paperclip-color color;    // Enumeration of the color
-  private paperclip-size size;      // Enumeration of the Size
+  private color theColor;    // Enumeration of the color
+  private size theSize;      // Enumeration of the Size
   private int quantity;             // Number of paperclips available of this type
 
   // Constructor
-  public paperclip(paperclip-color c, paperclip-size s, int qty) {
+  public paperclip(color c, size s, int qty) {
 
     // Initialize
-    this.color = c;
-    this.size = s;
+    this.theColor = c;
+    this.theSize = s;
     this.quantity = qty;
   }
 
@@ -26,15 +26,15 @@ public class paperclip {
   }
 
   // Returns the color of the paperclips
-  public paperclip-color getColor() {
+  public color getColor() {
 
-    return this.color;
+    return this.theColor;
   }
 
   // Returns the size of the paperclips
-  public paperclip-size getSize() {
+  public size getSize() {
 
-    return this.size;
+    return this.theSize;
   }
 
   // Updates the quantity of the paperclips

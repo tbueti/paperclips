@@ -2,10 +2,14 @@
 // Author: Thomas E. Bueti
 // NetID: tbueti
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 // Invoice Class
-public class invoice implements Comparable <invoice> {
+public class invoice {
 
   // Class members
   private String companyName;     // Name of the company
@@ -37,7 +41,7 @@ public class invoice implements Comparable <invoice> {
   public void addToCart(paperclip p) {
 
     // Update the price first
-    this.total += (p.getSize().getPrice() * p.getQty());
+    this.total += (p.getSize().getPrice() * (p.getQty() / 100));
 
     // Add the paperclips to the cart
     // See if we have paperclips that are already like this in the cart
@@ -71,7 +75,7 @@ public class invoice implements Comparable <invoice> {
         this.order.get(i).updateQty(0 - p.getQty());
 
         // Update the price first
-        this.total -= (p.getSize().getPrice() * p.getQty());
+        this.total -= (p.getSize().getPrice() * (p.getQty() / 100));
 
         // Did we get rid of all of them?
         if (this.order.get(i).getQty() < 1) {
@@ -135,6 +139,5 @@ public class invoice implements Comparable <invoice> {
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     return dateFormat.format(this.purchaseDate);
   }
-
 
 }
