@@ -2,10 +2,13 @@
 // Author: Thomas E. Bueti
 // NetID: tbueti
 
+import java.util.Date;
+
 // Invoice Class
 public class invoice implements Comparable<invoice> {
 
   // Class members
+  private final int price =
   private String companyName;     // Name of the company
   private String address;         // Where the customer is
   private String ccNum;           // Stored credit card number (totally secure bro)
@@ -27,20 +30,59 @@ public class invoice implements Comparable<invoice> {
 
     // Initialize the order information
     this.order = new ArrayList<paperclip>();
-    this.purchaseDate = new Date();           // TODO: lookup how to get today's date
+    this.purchaseDate = new Date();
     this.total = 0;
   }
 
   // Adds a paperclip to the order and updates the total
-  public boolean addToCart(paperclip p, int numclips) {
+  public void addToCart(paperclip p) {
 
-    // TODO: Implement this method
+    // Update the price first
+    this.total += (p.getSize().getPrice() * p.getQty());
+
+    // Add the paperclips to the cart
+    // See if we have paperclips that are already like this in the cart
+    for (int i = 0; i < this.order.size(); i++) {
+
+      // If we have a match
+      if (this.order.get(i).getColor() == p.getColor() && this.order.get(i).getSize() == p.getSize()) {
+
+        // Then just add to the quantity
+        this.order.get(i).updateQty(p.getQty());
+        return;
+      }
+    }
+
+    // If we've made it here, then we know that we have no paperclips like this in our Inventory
+    // So, just add it.
+    this.order.add(p);
   }
 
   // Removes a paper clip from the order and updates the total
-  public boolean removeFromCart(paperclip p) {
+  public void removeFromCart(paperclip p) {
 
-    // TODO:Implement this method
+    // Subtract the paperclips to the cart
+    // See if we have paperclips that are already like this in the cart
+    for (int i = 0; i < this.order.size(); i++) {
+
+      // If we have a match
+      if (this.order.get(i).getColor() == p.getColor() && this.order.get(i).getSize() == p.getSize()) {
+
+        // Then just add to the quantity
+        this.order.get(i).updateQty(0 - p.getQty());
+
+        // Update the price first
+        this.total -= (p.getSize().getPrice() * p.getQty());
+
+        // Did we get rid of all of them?
+        if (this.order.get(i).getQty() < 1) {
+
+          this.order.remove(i);
+        }
+        
+        return;
+      }
+    }
   }
 
   // Returns the customer order
