@@ -19,5 +19,21 @@ public class user {
     this.userType = t;
   }
 
+  // Returns the name of the user
+  public String getUsername() {
 
+    return this.username;
+  }
+
+  // Returns the password of the user (soooo secure bro)
+  public String getPassword() {
+
+    return this.password;
+  }
+
+  // Returns the type of employee the user is
+  public userType getType() {
+
+    return this.auth;
+  }
 }
